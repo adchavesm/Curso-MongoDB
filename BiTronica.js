@@ -3,6 +3,7 @@
 
 
 //Nombre de la base de datos
+show dbs;
 use BiTronica
 
 //Estructura del documento, para guardar los productos
@@ -403,18 +404,12 @@ db.ventas.find({"cantidad_venta":mayor})
 
 /////////////////////////////////////// SENTENCIAS AUXILIARES //////////////////////////////////
 
-db.ventas.remove({})
-
-db.compras.remove({"id_proveedor":"1040685413"});
-
 db.clientes.find().pretty()
 db.compras.find().pretty()
 db.productos.find().pretty()
 db.proveedores.find().pretty()
 db.ventas.find().pretty()
-show dbs;
-use biTronica
-db.productos.remove({"_id" : ObjectId("5da92a532f89442648e3db2c")})
-db.proveedores.remove({"id_proveedor":"1040685412"})
+
+/////// Eliminamos la base de datos
 
 db.dropDatabase()
