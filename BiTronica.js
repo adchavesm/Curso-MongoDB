@@ -1,3 +1,7 @@
+///////// BITRONICA ///////
+// ANDRES DUVAN CHAVES MOSQUERA
+
+//Estructura del documento, para guardar los productos
 db.productos.insert(
     {
      "id_producto" : "",
@@ -11,6 +15,7 @@ db.productos.insert(
     }
 )
 
+//Estructura del documento, para guardar los clientes
 db.clientes.insert(
     {
         "id_cliente":"200",
@@ -19,6 +24,7 @@ db.clientes.insert(
     }
 )
 
+//Estructura del documento, para guardar los proveedores
 db.proveedores.insert(
     {
         "id_proveedor":"",
@@ -28,6 +34,7 @@ db.proveedores.insert(
     }
 )
 
+//Estructura del documento, para guardar las compras
 db.compras.insert(
     {
         "id_producto":"",
@@ -251,6 +258,53 @@ db.ventas.insert(
     }
 )
 
+//FUNCION PARA COMPRAR
+
+db.loadServerScripts()
+
+comprar("2",5,"1030685412","106")
+
+db.system.js.save({
+    _id:"comprar",
+    value: function(id_producto,cantidad,id_comprador,id_venta){     
+        var res=""
+        var producto=db.productos.find({"id_producto":id_producto})
+        var productoArray=producto.toArray()
+        if((productoArray[0].stock - cantidad)<0){
+              res="Lo sentimos, quedan: "+productoArray[0].stock+" solo podremos vender esa cantidad, o la proxima semana, podria comprar la cantidad desceada."
+            
+            var proveedor=db.proveedores.find({"id_producto":id_producto})
+            var proveedorArray=proveedor.toArray()
+            db.compras.insert({
+                "id_producto" : id_producto, 
+                "id_proveedor" : proveedorArray[0].id_proveedor, 
+                "cantidad_compra" : 50, 
+                "monto_compra" : productoArray[0].precio_compra*50, 
+                "fecha_Compra" : Date()
+            })
+            
+            db.productos.update({"id_producto":id_producto},{$inc:{"stock":50}})
+        }else{
+            res="Transaccion exitosa"
+            
+            var preciou=productoArray[0].precio_venta
+        db.ventas.insert(
+        {
+        "id_venta": id_venta,
+        "id_producto":id_producto,
+        "id_comprador":id_comprador,
+        "cantidad_venta": cantidad,
+        "monto_venta": preciou*cantidad,
+        "fecha_venta": Date()
+        }
+        )
+        
+        db.productos.update({"id_producto":id_producto},{$inc:{"stock":-cantidad}})
+        }
+        return res;
+    }
+})
+
 
 
 
@@ -269,6 +323,9 @@ db.productos.find({"id_producto":"2"}).pretty();
 
 
 //H
+
+
+
 //i
 db.clientes.find({}).pretty();
 //j
@@ -393,7 +450,7 @@ db.proveedores.find().pretty()
 db.ventas.find().pretty()
 show dbs;
 use biTronica
-db.productos.remove({"_id" : ObjectId("5da8103947c225f283ddc98a")})
+db.productos.remove({"_id" : ObjectId("5da92a532f89442648e3db2c")})
 db.proveedores.remove({"id_proveedor":"1040685412"})
 use BiTronica
 db.dropDatabase()
