@@ -1,6 +1,10 @@
 ///////// BITRONICA ///////
 // ANDRES DUVAN CHAVES MOSQUERA
 
+
+//Nombre de la base de datos
+use BiTronica
+
 //Estructura del documento, para guardar los productos
 db.productos.insert(
     {
@@ -90,21 +94,7 @@ db.productos.insert(
 )
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//clientes
 
 
 
@@ -133,13 +123,7 @@ db.clientes.insert(
 )
 
 
-
-
-
-
-
-
-
+// proveedores
 
 db.proveedores.insert(
     {
@@ -168,14 +152,7 @@ db.proveedores.insert(
     }
 )
 
-
-
-
-
-
-
-
-
+//compras
 
 
 db.compras.insert(
@@ -211,18 +188,7 @@ db.compras.insert(
     }
 )
 
-
-
-
-
-
-
-
-
-
-
-
-
+//ventas
 
 db.ventas.insert(
     {
@@ -259,10 +225,6 @@ db.ventas.insert(
 )
 
 //FUNCION PARA COMPRAR
-
-db.loadServerScripts()
-
-comprar("2",5,"1030685412","106")
 
 db.system.js.save({
     _id:"comprar",
@@ -305,7 +267,9 @@ db.system.js.save({
     }
 })
 
+db.loadServerScripts()
 
+comprar("2",5,"1030685412","106")
 
 
 //CONSULTAS
@@ -452,5 +416,5 @@ show dbs;
 use biTronica
 db.productos.remove({"_id" : ObjectId("5da92a532f89442648e3db2c")})
 db.proveedores.remove({"id_proveedor":"1040685412"})
-use BiTronica
+
 db.dropDatabase()
