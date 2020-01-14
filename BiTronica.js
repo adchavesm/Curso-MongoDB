@@ -23,7 +23,7 @@ db.productos.insert(
 //Estructura del documento, para guardar los clientes
 db.clientes.insert(
     {
-        "id_cliente":"200",
+        "id_cliente":"",
             "nombre_cliente":"",
             "ciudad_cliente":""
     }
@@ -50,7 +50,16 @@ db.compras.insert(
     }
 )
 
-
+db.ventas.insert(
+    {
+        "id_venta": "",
+        "id_producto":"",
+        "id_comprador":"",
+        "cantidad_venta": 1,
+        "monto_venta":9000,
+        "fecha_venta": Date()
+    }
+)
 
 
 //PRODUCTOS

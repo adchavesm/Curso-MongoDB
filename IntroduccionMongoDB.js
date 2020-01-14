@@ -1,0 +1,2 @@
+show dbs    
+use TIENDA
