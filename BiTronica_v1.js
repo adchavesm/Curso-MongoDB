@@ -95,28 +95,26 @@ db.Productos.find({'Cantidad':0}).pretty()
 db.Productos.find({"Categoria":"Audio"}).pretty();
 db.Productos.find({"id":"6"}).pretty();
 //G
-//H
-//i
 db.Productos.find({},{"Clientes.Ventas":0,"_id":0,"id":0,
  "Stock":0,"Nombre":0,"Categoria":0,"Caracteristica1":0,"Caracteristica2":0,"Proveedor":0,"PrecioCompra":0
  ,"PrecioVenta":0}).pretty();
-//j
+//H
 db.Productos.find({"Clientes.id_Cliente":"1030685411"},{"Clientes.Ventas":0,"_id":0,"id":0,
  "Stock":0,"Nombre":0,"Categoria":0,"Caracteristica1":0,"Caracteristica2":0,"Proveedor":0,"PrecioCompra":0
  ,"PrecioVenta":0}).pretty();
-//k
+//I
 
-//l
+//J
 db.Productos.find({},{"Proveedor.Compras":1,"_id":0});
-//m
+//K
 db.Productos.find({"Proveedor.id_Proveedor":"125212"},{"_id":0,"id":0,
  "Cantidad":0,"Nombre":0,"Categoria":0,"CaracteristicaN1":0,"CaracteristicaN2":0,"Clientes":0});
-//n
+//L
 
-//o
-//p
-//q
-//r
+//M
+//N
+//O
+//P
 
 
 

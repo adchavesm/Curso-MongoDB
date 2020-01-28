@@ -292,13 +292,6 @@ db.productos.find({'stock':0}).pretty()
 //f
 db.productos.find({"categoria":"Audio"}).pretty();
 db.productos.find({"id_producto":"2"}).pretty();
-//G
-
-
-
-//H
-
-
 
 //G
 db.clientes.find({}).pretty();
