@@ -1,3 +1,4 @@
+//
 //Estructura general para almacenar toda la informacion requerida
 db.Productos.insert({
     "id" : "2",
