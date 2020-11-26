@@ -24,6 +24,26 @@ db.Productos.insert({   "Nombre": "Aveo Emotion",
                         "cilindraje(litros)": 1.6, 
                         "combustible": "Gasolina"})
 
+db.Productos.find(
+{
+    "marca": "Toyota"
+},
+{
+    "modelo": false
+})
+
+db.Productos.remove({
+    marca: "Toyota"
+})
+
+db.Productos.update({
+    marca: "Toyota"
+},{
+    $inc:{
+        "cilindraje(litros)":1
+    }
+})
+
 db.system.js.save({
     _id: "CambiarCilindraje",
     value: function (cilindrajeNuevo, nombreDeAuto){
