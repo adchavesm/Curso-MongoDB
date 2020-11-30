@@ -1,6 +1,8 @@
-///////// BITRONICA ///////
-// ANDRES DUVAN CHAVES MOSQUERA
+///////// Base de datos MongoDB para BITRONICA ///////
 
+/*
+Autor: ANDRES DUVAN CHAVES MOSQUERA
+*/
 
 //Nombre de la base de datos
 show dbs;
@@ -62,7 +64,7 @@ db.ventas.insert(
 )
 
 
-//PRODUCTOS
+// Insercion de PRODUCTOS
 db.productos.insert(
     {
      "id_producto" : "1",
@@ -75,7 +77,6 @@ db.productos.insert(
     "precio_compra":1350
     }
 )
-
 
 db.productos.insert(
     {
@@ -103,10 +104,7 @@ db.productos.insert(
     }
 )
 
-
-//clientes
-
-
+// Insercion de clientes
 
 db.clientes.insert(
     {
@@ -132,8 +130,7 @@ db.clientes.insert(
     }
 )
 
-
-// proveedores
+// Insercion de PROVEEDORES
 
 db.proveedores.insert(
     {
@@ -162,8 +159,7 @@ db.proveedores.insert(
     }
 )
 
-//compras
-
+// Insercion de compras
 
 db.compras.insert(
     {
@@ -198,7 +194,7 @@ db.compras.insert(
     }
 )
 
-//ventas
+//Insercion de Ventas
 
 db.ventas.insert(
     {
@@ -281,26 +277,30 @@ db.loadServerScripts()
 
 comprar("2",5,"1030685412","106")
 
+// Consultas tipicas
 
-//CONSULTAS
 //c
 db.productos.find({},{"nombre":1,"_id":0}).pretty()
+
 //d
 db.productos.find({'stock':{$gt:0}},{"nombre":1,"stock":1,"_id":0}).pretty()
+
 //e
 db.productos.find({'stock':0}).pretty()
+
 //f
 db.productos.find({"categoria":"Audio"}).pretty();
 db.productos.find({"id_producto":"2"}).pretty();
 
 //G
 db.clientes.find({}).pretty();
+
 //H
 db.Productos.find({"Clientes.id_cliente":"1030685411"},{"Clientes.Ventas":0,"_id":0,"id":0,
  "stock":0,"nombre":0,"categoria":0,"caracteristica1":0,"caracteristica2":0,"Proveedor":0,"precio_compra":0
  ,"precio_venta":0}).pretty();
-//I
 
+ //I
 var id="1030685412";
 var items = db.ventas.find({"id_comprador":id})
 var itemsArray=items.toArray()
@@ -316,26 +316,22 @@ valor
 db.Productos.find({},{"Proveedor.Compras":1,"_id":0});
 
 //K
-
 db.Productos.find({"proveedor.id_proveedor":"125212"},{"_id":0,"id":0,
  "cantidad":0,"nombre":0,"categoria":0,"CaracteristicaN1":0,"CaracteristicaN2":0,"Clientes":0});
  
- 
 //L
-
 var id="1040685412";
 var items = db.compras.find({"id_proveedor":id})
 var itemsArray=items.toArray()
 var valor=0
 
 for(var i=0; i<items.length();i=i+1){
-        valor=valor+itemsArray[i].monto_compra
+    valor=valor+itemsArray[i].monto_compra
 }
 
 valor
 
 //M
-
 var items = db.ventas.find()
 var itemsArray=items.toArray()
 var mayor=0
@@ -356,9 +352,7 @@ for(var i=0; i<items.length();i=i+1){
 
 db.clientes.find({"id_cliente":id})
 
-
 //N
-
 var items = db.compras.find()
 var itemsArray=items.toArray()
 var mayor=0
@@ -390,7 +384,6 @@ for(var i=0; i<items.length();i=i+1){
 }
 db.ventas.find({"monto_venta":mayor})
 
-
 // P
 var items = db.ventas.find();
 var itemsArray=items.toArray()
@@ -402,7 +395,6 @@ for(var i=0; i<items.length();i=i+1){
 }
 
 db.ventas.find({"cantidad_venta":mayor})
-
 
 /////////////////////////////////////// SENTENCIAS AUXILIARES //////////////////////////////////
 
