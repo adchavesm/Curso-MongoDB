@@ -129,38 +129,38 @@ db.Proveedores.find().sort({"Valor Compra":-1}).limit(1)
 ////////// Creación de Funciones ///////////
 
 //Función venta de un producto
-db.system.js.save(
-    {
+db.system.js.save({
       _id:"VentaProductos",
       value:function(ArtNum, idProd, idClient,idProv){
-          var aux=0
+        var aux=0
         db.Productos.find({"_id":idProd}).forEach(Productos=>(aux+=Productos.Precio_Compra))
-aux*=ArtNum
-          $cond:[ {"Stock":true},
-
-              db.Productos.update({"_id":idProd},
- {$inc:{"Cantidad":-ArtNum}}),
-                db.Clientes.update({"_id":idClient},
-       {$inc:{"Productos Comprados":ArtNum, "Compra Total":aux}})        
-          ,
-              db.Proveedores.update({"_id":idProv},{$inc:{"Valor Compra":aux}}),
-              db.Productos.update({"_id":idProd},{$inc:{"Cantidad":ArtNum*2}})
-             
+        aux*=ArtNum
+        $cond:[ {"Stock":true},
+            db.Productos.update({
+                "_id":idProd}, {$inc:{"Cantidad":-ArtNum}
+            }),
+            db.Clientes.update(
+                {"_id":idClient},
+                {
+                    $inc:{
+                        "Productos Comprados":ArtNum, 
+                        "Compra Total":aux}
+                }
+            ),
+            db.Proveedores.update({"_id":idProv},{$inc:{"Valor Compra":aux}}),
+            db.Productos.update({"_id":idProd},{$inc:{"Cantidad":ArtNum*2}}) 
         ]
       }  
     }
 )
+
 db.loadServerScripts()
 
-
+// uso de la funcion
 VentaProducto(3,5455,7708797245,74962)
-
-
-
 
 db.Productos.find({"_id":5455},{}).pretty()
 
 db.system.js.find()
 
 db.system.js.remove({_id:"VentaProducto"})
-
