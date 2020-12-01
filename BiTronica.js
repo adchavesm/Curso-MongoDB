@@ -279,28 +279,28 @@ comprar("2",5,"1030685412","106")
 
 // Consultas tipicas
 
-//c
+//d.	Consulta típica: Productos en stock.
 db.productos.find({},{"nombre":1,"_id":0}).pretty()
 
-//d
+//d.	Consulta típica: Productos en stock.
 db.productos.find({'stock':{$gt:0}},{"nombre":1,"stock":1,"_id":0}).pretty()
 
-//e
+//e.	Consulta típica:Productos que no están en stock.
 db.productos.find({'stock':0}).pretty()
 
-//f
+//f.	Consulta típica:Productos específicos por identificación,categoría o características.
 db.productos.find({"categoria":"Audio"}).pretty();
 db.productos.find({"id_producto":"2"}).pretty();
 
-//G
+//g.	Consulta típica:Listado de clientes.
 db.clientes.find({}).pretty();
 
-//H
+//h.	Consulta típica:Cliente específico por identificación o nombre.
 db.Productos.find({"Clientes.id_cliente":"1030685411"},{"Clientes.Ventas":0,"_id":0,"id":0,
  "stock":0,"nombre":0,"categoria":0,"caracteristica1":0,"caracteristica2":0,"Proveedor":0,"precio_compra":0
  ,"precio_venta":0}).pretty();
 
- //I
+ //i.	Consulta típica:Dinero que el cliente ha pagado a la empresa.
 var id="1030685412";
 var items = db.ventas.find({"id_comprador":id})
 var itemsArray=items.toArray()
@@ -312,14 +312,14 @@ for(var i=0; i<items.length();i=i+1){
 
 valor
 
-//J
+//j.	Consulta típica:Listado de Proveedores.
 db.Productos.find({},{"Proveedor.Compras":1,"_id":0});
 
-//K
+//k.	Consulta típica:Proveedores específicos por identificación, producto o nombre.
 db.Productos.find({"proveedor.id_proveedor":"125212"},{"_id":0,"id":0,
  "cantidad":0,"nombre":0,"categoria":0,"CaracteristicaN1":0,"CaracteristicaN2":0,"Clientes":0});
  
-//L
+//l.	Consulta típica:Cantidad total de dinero que la empresa ha pagado a un proveedor.
 var id="1040685412";
 var items = db.compras.find({"id_proveedor":id})
 var itemsArray=items.toArray()
@@ -331,7 +331,7 @@ for(var i=0; i<items.length();i=i+1){
 
 valor
 
-//M
+//m.	Consulta típica: Cliente que mas ha consumido productos de BitTronica(en cantidad y en dinero).
 var items = db.ventas.find()
 var itemsArray=items.toArray()
 var mayor=0
@@ -352,7 +352,7 @@ for(var i=0; i<items.length();i=i+1){
 
 db.clientes.find({"id_cliente":id})
 
-//N
+//n.	Consulta típica: Proveedor el cual BitTronica ha invertido más.
 var items = db.compras.find()
 var itemsArray=items.toArray()
 var mayor=0
@@ -373,7 +373,7 @@ for(var i=0; i<items.length();i=i+1){
 
 db.proveedores.find({"id_proveedor":id})
 
-//O
+//o.	Consulta típica: Mayor venta realizada con referencia a dinero.
 var items = db.ventas.find()
 var itemsArray=items.toArray()
 var mayor=0;
@@ -384,7 +384,7 @@ for(var i=0; i<items.length();i=i+1){
 }
 db.ventas.find({"monto_venta":mayor})
 
-// P
+// p.	Consulta típica: Mayor venta realizada con referencia a cantidad.
 var items = db.ventas.find();
 var itemsArray=items.toArray()
 var mayor=0;
