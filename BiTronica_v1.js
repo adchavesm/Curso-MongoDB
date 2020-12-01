@@ -73,7 +73,6 @@ db.system.js.save({
 AgregarCliente("1","1030685412","regelio","valledupar")
 
 
-
 //FUNCION PARA VENDER
 db.system.js.save({
     _id:"Venta",
@@ -82,41 +81,39 @@ db.system.js.save({
     }
 })
 
-
 Venta("1","1030685412","1035",15,650000)
 
 //CONSULTAS
+
 //c
 db.Productos.find({},{"Clientes":0,"Proveedor":0}).pretty()
+
 //d
 db.Productos.find({'Cantidad':{$gt:0}}).pretty()
+
 //e
 db.Productos.find({'Cantidad':0}).pretty()
+
 //f
 db.Productos.find({"Categoria":"Audio"}).pretty();
+
 db.Productos.find({"id":"6"}).pretty();
 //G
 db.Productos.find({},{"Clientes.Ventas":0,"_id":0,"id":0,
  "Stock":0,"Nombre":0,"Categoria":0,"Caracteristica1":0,"Caracteristica2":0,"Proveedor":0,"PrecioCompra":0
  ,"PrecioVenta":0}).pretty();
+
 //H
 db.Productos.find({"Clientes.id_Cliente":"1030685411"},{"Clientes.Ventas":0,"_id":0,"id":0,
  "Stock":0,"Nombre":0,"Categoria":0,"Caracteristica1":0,"Caracteristica2":0,"Proveedor":0,"PrecioCompra":0
  ,"PrecioVenta":0}).pretty();
-//I
 
 //J
 db.Productos.find({},{"Proveedor.Compras":1,"_id":0});
+
 //K
 db.Productos.find({"Proveedor.id_Proveedor":"125212"},{"_id":0,"id":0,
  "Cantidad":0,"Nombre":0,"Categoria":0,"CaracteristicaN1":0,"CaracteristicaN2":0,"Clientes":0});
-//L
-
-//M
-//N
-//O
-//P
-
 
 
 
