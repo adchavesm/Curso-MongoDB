@@ -1,0 +1,37 @@
+services:
+  web:
+    container_name: app
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "${WEB_PORT}:${WEB_PORT}"
+    environment:
+      - DB_NAME
+      - DB_HOST
+      - DB_PASS
+      - DB_PORT
+      - DB_USER
+      - PRODUCTION
+    depends_on:
+      mysql:
+          condition: service_healthy
+    links:
+      - mysql
+      - mysql:database
+
+  mysql:
+    image: mysql:5.7.22
+    env_file:
+      - .env
+    container_name: mysql
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
