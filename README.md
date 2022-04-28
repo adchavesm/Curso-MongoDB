@@ -1,60 +1,25 @@
-# Examen Mercadolibre
+# Curso-MongoDB
+Mongodb es una base de datos que basa su estructura en documentos, estos documentos llamados Bson que se podria decir que es la misma estructura tipo json(es la estructura que maneja javaScript para almacenar sus objetos).
 
-Magneto necesita buscar Mutantes, esta herramienta desarrollada en GO y desplegada con docker en AWS, te ayudara!  
+## Existen varias maneras de conectarse y trabajar en una base de datos mongodb, que se mencionan a continuacion:
+- Mongodb atlas, el cual es un servicio de hosting servido por la misma compañía creadora(estas maquinas tienen un costo, pero existen maquinas gratuitas con poca capacidad, con fines educativos)
+- Local, podemos crear un cluster(que estara corriendo como un servicio) en nuestro computador y conectarnos a este, esta es la forma mas comoda, para aprender a trabajar con mongoDB, ya que poseemos espacio ilimitado y no vamos a tener problemas de conexión, gracias a esto podremos tener un acceso total a nuestro cluster de mongodb.
+- Imagen de docker, si estamos utilizando linux, podemos arrancar un contenedor de mongoDB, sin descargar nada,  docker nos permite esto, gracias a que docker tiene en su nube la imagen para arrancar mongodb.
+- Existen muchas mas formas, pero serian derivadas de estas y para el objetivo de el curso, vamos a trabajar con la manera local.
 
+## Una vez mencionada sus formas de obtener mongoDB, vamos a mirar como hacer una instalacion local:
 
-## Consulta si eres mutante!
+- Vamos a la pagina oficial de mongodb y descargaremos la version “Community Server”:
+elegiremos nuestro sistema operativo.
 
-El ejercicio quedo resuelto y desplegado a traves de AWS. Por lo que si estas leyendo esto, puedes interactuar con este.
-Este servicio se encuentra respondiendo en la direccion http://35.171.169.217, por el puerto: 8080.
+- instalamos el archivo descargado como corresponda a nuestro sistema operativo.
 
-### El servicio cuenta con dos recursos expuestos:
+- agregamos la ruta al path, para poder ejecutar sus comandos desde cualquier ubicación de la consola del sistema.
 
-- Solo debes contar con un generador de solicitudes HTTP como postman, o tu navegador para las peticiones GET. O tambien con CURL.
-- A continuacion dejo los CURLs de cada recurso para que puedan ser importados.
+- ejecutamos mongod, para arrancar el cluster.
 
-- Si quieres consultar si el Adn de un Humano, pertenece a un mutante: 
+- ejecutamos mongo, para ejecutar una shell que nos permitira interactuar con el cluster.
 
-```
-curl --location --request POST 'http://35.171.169.217:8080/mutant' \
---header 'Content-Type: application/json' \
---data-raw '{
-"dna": [
-"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
-}'
-```
+## Alternativa
 
-- Si quieres consultar las estadisticas de humanos y mutantes verificados.
-
-```
-curl --location --request GET 'http://35.171.169.217:8080/stats'
-```
-
-## Instrucciones de ejecucion
-
-#### Si quieres ejecutar esto en tu maquina local, debes seguir los siguientes pasos:
-
-- Tener instalado docker y docker compose en tu computadora.
-- Clonar este repositorio en un directorio de tu computadora.
-- Una vez clonado, entras al repositorio clonado en local y en tu terminal ejecutas: $ docker-compose up
-- Debido a que todo se encuentra dockerizado y la base de datos tambien es un contenedor, este comando le indicara a docker que corra los contenedores descritos en los archivos docker.
-- Solo tendras que esperar y ya tendras el servicio disponible en el puerto 8080.
-
-## Consideraciones
-
-- El algoritmo para identificar mutantes, funciona para cualquier matriz de tamaño N.
-- Se asumio que el conjunto de Mutantes pertenece a el conjunto de humanos. Por lo tanto todos los mutantes son humanos, pero no todos los humanos son mutantes.
-
-## Tecnologias utilizadas
-
-- Como lenguaje de programacion se utilizo GO y su framework Gin para gestionar el servidor.
-- Se utilizo una base de datos MySQL para la persistencia de informacion.
-- Se creo un contenedor de docker tanto para la app, como para la base de datos.
-- Se desplego en una maquina EC2 de AWS, a traves de docker-compose y el repositorio de github.
-
-### Evidencias de pruebas unitarias y covertura.
-
-![Covertura desde la terminal.](images/Captura2.JPG)
-
-![Covertura desde el directorio de archivos.](images/Captura.JPG)
-
+3t studio es un IDE que nos facilita la interaccion con mongodb, recomiendo usarlo, ya que es mas amigable de usar que la shell.
